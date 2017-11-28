@@ -55,9 +55,9 @@ class RouterAdapter implements RouterAdapterInterface
     /**
      * @inheritdoc
      */
-    public function register(string $name, array $method, string $pattern, Handler $handler): void
+    public function register(string $name, array $method, string $pattern, Handler $handler, callable $setup = null): void
     {
-        $this->mapper->register($name, $method, $pattern, $handler);
+        $this->mapper->register($name, $method, $pattern, $handler, $setup);
     }
 
     /**

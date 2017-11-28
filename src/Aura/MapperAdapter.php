@@ -28,8 +28,10 @@ class MapperAdapter
     /**
      * @inheritdoc
      */
-    public function register(string $name, array $method, string $pattern, Handler $handler): void
+    public function register(string $name, array $method, string $pattern, Handler $handler, callable $setup = null): void
     {
-        $this->map->route($name, $pattern, $handler)->allows($method);
+        $route = $this->map->route($name, $pattern, $handler)->allows($method);
+
+        if (! is_null($setup)) $setup($route);
     }
 }

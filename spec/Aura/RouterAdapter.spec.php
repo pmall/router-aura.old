@@ -1,5 +1,6 @@
 <?php
 
+use function Eloquent\Phony\Kahlan\stub;
 use function Eloquent\Phony\Kahlan\mock;
 
 use Psr\Http\Message\ServerRequestInterface;
@@ -36,13 +37,32 @@ describe('RouterAdapter', function () {
 
     describe('->register()', function () {
 
-        it('should proxy the mapper ->register() method', function () {
+        context('when no setup callable is given', function () {
 
-            $handler = mock(Handler::class)->get();
+            it('should proxy the mapper ->register() method', function () {
 
-            $this->router->register('name', ['GET'], '/pattern', $handler);
+                $handler = mock(Handler::class)->get();
 
-            $this->mapper->register->calledWith('name', ['GET'], '/pattern', $handler);
+                $this->router->register('name', ['GET'], '/pattern', $handler);
+
+                $this->mapper->register->calledWith('name', ['GET'], '/pattern', $handler, null);
+
+            });
+
+        });
+
+        context('when a setup callable is given', function () {
+
+            it('should proxy the mapper ->register() method', function () {
+
+                $handler = mock(Handler::class)->get();
+                $setup = stub();
+
+                $this->router->register('name', ['GET'], '/pattern', $handler, $setup);
+
+                $this->mapper->register->calledWith('name', ['GET'], '/pattern', $handler, $setup);
+
+            });
 
         });
 
