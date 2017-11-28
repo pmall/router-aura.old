@@ -28,8 +28,8 @@ class MapperAdapter
     /**
      * @inheritdoc
      */
-    public function register(string $name, array $method, string $pattern, Handler $handler)
+    public function register(string $name, array $method, string $pattern, Handler $handler): void
     {
-        return $this->map->route($name, $pattern, $handler)->allows($method);
+        $this->map->route($name, $pattern, $handler)->allows($method);
     }
 }

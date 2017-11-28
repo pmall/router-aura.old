@@ -28,9 +28,8 @@ describe('MapperAdapter', function () {
             $this->map->route->returns($route);
             $route->allows->returns($route);
 
-            $test = $this->adapter->register('name', ['GET'], '/pattern', $handler);
+            $this->adapter->register('name', ['GET'], '/pattern', $handler);
 
-            expect($test)->toBe($route->get());
             $this->map->route->calledWith('name', '/pattern', $handler);
             $route->allows->calledWith(['GET']);
 
