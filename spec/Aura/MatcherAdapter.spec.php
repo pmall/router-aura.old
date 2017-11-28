@@ -66,7 +66,7 @@ describe('MatcherAdapter', function () {
                 $this->request->getMethod->returns('GET');
 
                 $this->route = new Route;
-                $this->matcher->match->returns(null);
+                $this->matcher->match->returns(false);
                 $this->matcher->getFailedRoute->returns($this->route);
 
             });

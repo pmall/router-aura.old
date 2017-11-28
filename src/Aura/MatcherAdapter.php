@@ -37,7 +37,7 @@ class MatcherAdapter
     {
         $route = $this->matcher->match($request);
 
-        if (! is_null($route)) {
+        if ($route !== false) {
 
             $name = $route->name;
             $handler = $route->handler;
