@@ -48,8 +48,9 @@ describe('MatcherAdapter', function () {
 
                 $test = $this->adapter->match($this->request->get());
 
-                expect($test)->toBeAnInstanceOf(Match::class);
-                expect((string) $test)->toEqual('name');
+                $match = new Match('name', $handler, ['attribute']);
+
+                expect($test)->toEqual($match);
 
             });
 
